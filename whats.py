@@ -7,12 +7,11 @@ class Whats:
     def __init__(self):
         self.nav = webdriver.Chrome(ChromeDriverManager().install())
     
-    def get_message_from():
-        pass
-    
+    # Send message to a contact or group
     def send_message_to():
         pass
     
+    # Await for a message from any contact or a specific contact. Returns the contact
     def await_message():
         pass
     
