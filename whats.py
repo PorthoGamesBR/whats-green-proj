@@ -6,6 +6,7 @@ class Whats:
     
     def __init__(self):
         self.nav = webdriver.Chrome(ChromeDriverManager().install())
+        self.nav.get('https://web.whatsapp.com')
     
     # Send message to a contact or group
     def send_message_to():
