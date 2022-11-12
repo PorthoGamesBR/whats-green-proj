@@ -10,7 +10,6 @@ class Whats:
         self.nav.get('https://web.whatsapp.com')
         while len(self.nav.find_elements(By.ID,'side')) < 1:
             time.sleep(1)
-        print('Found!')
             
     
     # Send message to a contact or group
