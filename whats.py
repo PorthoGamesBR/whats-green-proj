@@ -1,12 +1,17 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
+import time
 
 class Whats:
     
     def __init__(self):
         self.nav = webdriver.Chrome(ChromeDriverManager().install())
         self.nav.get('https://web.whatsapp.com')
+        while len(self.nav.find_elements(By.ID,'side')) < 1:
+            time.sleep(1)
+        print('Found!')
+            
     
     # Send message to a contact or group
     def send_message_to():
