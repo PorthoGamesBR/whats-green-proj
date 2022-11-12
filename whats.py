@@ -2,11 +2,15 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 import time
-
+    
 class WhatsElementsID:
     
-    contacts = "pane-side"
+    contacts = "side"
     messages = "main"
+    
+class WhatsElementsClass:
+    
+    contact_mesg_desc = "Hy9nV"
 
 class Whats:
     
@@ -16,6 +20,16 @@ class Whats:
         while len(self.nav.find_elements(By.ID,'side')) < 1:
             time.sleep(1)
             
+        # Test code, get rid of it later        
+        mesg_descs = ""
+        while len(mesg_descs) < 1:
+            mesg_descs = self.nav.find_elements(By.CLASS_NAME, WhatsElementsClass.contact_mesg_desc)
+            time.sleep(1)
+        
+        print(len(mesg_descs))
+        for msg in mesg_descs:
+            print(msg.text)
+            
     
     # Send message to a contact or group
     def send_message_to():
@@ -23,4 +37,5 @@ class Whats:
     
     # Await for a message from any contact or a specific contact. Returns the contact
     def await_message():
+        # Await until message notification
         pass
