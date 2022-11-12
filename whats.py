@@ -3,6 +3,11 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 
+class WhatsElementsID:
+    
+    contacts = "pane-side"
+    messages = "main"
+
 class Whats:
     
     def __init__(self):
