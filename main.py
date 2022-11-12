@@ -1,4 +1,6 @@
+from whats import Whats
 
+wts = Whats()
 
 def main():
     pass

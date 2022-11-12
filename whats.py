@@ -14,5 +14,3 @@ class Whats:
     # Await for a message from any contact or a specific contact. Returns the contact
     def await_message():
         pass
-    
-wp = Whats()
