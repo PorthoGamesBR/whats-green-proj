@@ -4,10 +4,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 class Whats:
     
-    nav = webdriver.Chrome(ChromeDriverManager().install())
-    
     def __init__(self):
-        pass
+        self.nav = webdriver.Chrome(ChromeDriverManager().install())
     
     def get_message_from():
         pass
