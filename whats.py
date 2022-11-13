@@ -27,7 +27,7 @@ class Whats:
         self.nav = webdriver.Chrome(ChromeDriverManager().install())
         self.config = {'timeout' : 250}
         self.nav.get('https://web.whatsapp.com')
-
+        self.nav.execute_script("document.body.style.zoom='25%'")
         try:
             WebDriverWait(self.nav, self.config['timeout']).until(EC.visibility_of_element_located((By.ID,WhatsElementsID.contacts)))
         except Exception:
