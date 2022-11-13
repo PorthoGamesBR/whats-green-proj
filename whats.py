@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 import time
     
@@ -29,6 +30,7 @@ class Whats:
         print(len(mesg_descs))
         for msg in mesg_descs:
             print(msg.text)
+        #We need to find a way to scroll the whole contact list
             
     
     # Send message to a contact or group
