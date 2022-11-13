@@ -18,7 +18,7 @@ class WhatsElementsID:
 class WhatsElementsClass:
     
     contact_text = "_3OvU8"
-    
+    contact_name = "zoWT4"
     contact_mesg_desc = "Hy9nV"
 
 class Whats:
@@ -43,6 +43,7 @@ class Whats:
             print("Error at 'get_all_contacts_web()'. Did not found any contact.")
             return None
         
+        contacts = self.nav.find_elements(By.CLASS_NAME,WhatsElementsClass.contact_text)
         return contacts
         
     # Send message to a contact or group
@@ -50,7 +51,30 @@ class Whats:
         pass
     
     # Await for a message from any contact or a specific contact. Returns the contact
-    def await_message():
+    def await_message(self, msg):    
         # Await until message notification
-        pass
+        contacts = self.get_all_contacts_web()
+        if contacts:
+            for c in contacts:
+                if c.text == 'Arquivadas':
+                    continue
+                try:
+                    last_msg = c.find_element(By.CLASS_NAME,WhatsElementsClass.contact_mesg_desc).text
+                    print('message:',"".join(last_msg.split()))
+                except Exception:
+                    print('Message not found')
+                    print(c.text)
+                    continue
+                try:
+                    contact = c.find_element(By.CLASS_NAME, WhatsElementsClass.contact_name).text
+                except Exception:
+                    print('Contact of message not found')
+                    print(c.text)
+                    continue
+                
+                if "".join(last_msg.split()) == msg:
+                    return contact
+            
+    def close(self):
+        self.nav.quit()
     
