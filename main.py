@@ -4,19 +4,9 @@ from time import sleep
 
 wts = Whats()
 
+running = False
 def main():
-    # Test code, do NOT send to main
-    sleep(30)
-    contacts = wts.get_all_contacts_web()
-    if contacts:
-        for c in contacts:
-            try:
-                print('Contact:',c.find_element(By.CLASS_NAME, "zoWT4").text)
-                print('Last Sent Message',c.find_element(By.CLASS_NAME, "Hy9nV").text)
-                print()
-            except Exception:
-                print(c.text)
-                print()
+    running = True
 
 if __name__ == "__main__":
     main()
