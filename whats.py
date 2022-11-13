@@ -1,8 +1,12 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+from webdriver_manager.chrome import ChromeDriverManager
+
 
 import time
     
@@ -19,22 +23,21 @@ class WhatsElementsClass:
 
 class Whats:
     
+
     def __init__(self):
         self.nav = webdriver.Chrome(ChromeDriverManager().install())
+        self.config = {'timeout' : 120}
         self.nav.get('https://web.whatsapp.com')
-        while len(self.nav.find_elements(By.ID,'side')) < 1:
-            time.sleep(1)
+        WebDriverWait(self.nav, self.config['timeout']).until(EC.visibility_of_element_located((By.ID,WhatsElementsID.contacts)))
             
         #We need to find a way to scroll the whole contact list
             
     def get_all_contacts_web(self) -> list[WebElement]:
-        # Get all visible contacts as WebElement objects (Name and last sent message)
-        contacts = ''
+        # Will await untill the contact text is visible
+        WebDriverWait(self.nav, self.config['timeout']).until(EC.visibility_of_element_located((By.CLASS_NAME,WhatsElementsClass.contact_text)))
         
-        # Will await until the contacts are visible
-        while len(contacts) < 1:
-            contacts = self.nav.find_elements(By.CLASS_NAME, WhatsElementsClass.contact_text)
-            time.sleep(1)
+        # Get all visible contacts as WebElement objects (Name and last sent message)
+        contacts = self.nav.find_elements(By.CLASS_NAME, WhatsElementsClass.contact_text)
         
         return contacts
         
